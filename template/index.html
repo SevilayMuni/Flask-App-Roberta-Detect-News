@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Classifier</title>
+
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: url('./static/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: center;
+        }
+
+        /* Centered Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            border-radius: 8px;
+        }
+
+        h1 {
+            margin-bottom: 15px;
+            font-size: 2.5em;
+            color: #f8f8f8;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+
+        form {
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        /* Centered Button */
+        .button-container {
+            text-align: center;
+        }
+
+        button {
+            margin-top: 9px;
+            margin-bottom: 9px;
+            padding: 10px 15px;
+            font-size: 1.3em;
+            color: #fff;
+            background-color: #210874ca;
+            border: none;
+            border-radius: 13px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1f3c9c;
+        }
+
+        /* Footer */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 1em;
+        }
+
+        .footer-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px; /* Adds spacing between elements */
+            flex-wrap: nowrap;
+        }
+
+        .footer-icons p {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0;
+        }
+
+        .footer-icons img {
+            vertical-align: middle; /* Aligns images with text */
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer-icons a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Detect News with RoBERTa</h1>
+        <p>Enter the news title and text to check whether the news is reliable or not!</p>
+        <form method="POST" action="/">
+            <label for="title">News Title:</label>
+            <input type="text" id="title" name="title" placeholder="Enter the title" required>
+
+            <label for="text">News Text:</label>
+            <textarea id="text" name="text" rows="6" placeholder="Enter the news content" required></textarea>
+
+            <!-- Centered Button -->
+            <div class="button-container">
+                <button type="submit">Detect</button>
+            </div>
+        </form>
+
+        <!-- Display Prediction If Available -->
+        {% if prediction_text %}
+            <h2>Prediction:</h2>
+            <p>{{ prediction_text }}</p>
+            <h3>Original Input:</h3>
+            <p>{{ original_text }}</p>
+        {% endif %}
+    </div>
+
+    <footer>
+        <div class="footer-icons" style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <p>Copyright © 2024 Sevilay Munire Girgin</p>
+            <span>|</span>
+            <a href="https://github.com/SevilayMuni" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub" title="GitHub" width="24" height="24">
+            </a>
+            <a href="https://www.linkedin.com/in/sevilay-munire-girgin-8902a7159" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" title="LinkedIn" width="24" height="24">
+            </a>
+        </div>
+    </footer>
+    
+</body>
+</html>
